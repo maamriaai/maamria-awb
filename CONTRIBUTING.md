@@ -7,7 +7,7 @@ By contributing you agree to follow our [Code of Conduct](./CODE_OF_CONDUCT.md).
 ## Quick start
 
 ```bash
-git clone https://github.com/maamria/awb.git maamria-awb
+git clone https://github.com/maamriaai/maamria-awb.git maamria-awb
 cd maamria-awb
 npm install
 export MAAMRIA_API_URL=http://127.0.0.1:8010/v1   # if you have a local backend
@@ -18,7 +18,7 @@ That's it. You're ready to hack on the CLI.
 
 ## What can I work on?
 
-- Browse [open issues](https://github.com/maamria/awb/issues). Anything labelled `good-first-issue` is sized for a first PR.
+- Browse [open issues](https://github.com/maamriaai/maamria-awb/issues). Anything labelled `good-first-issue` is sized for a first PR.
 - Improving documentation is always valuable — typos, broken links, unclear sections, missing examples.
 - New assistant integrations (Cursor / Windsurf / Copilot output) — see [`ROADMAP.md`](./ROADMAP.md) for what's planned.
 - Workspace templates and community presets — see [`docs/open-source-growth.md`](./docs/open-source-growth.md).

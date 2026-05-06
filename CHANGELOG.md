@@ -56,5 +56,5 @@ Initial public preview.
 - Keys are sent only via `Authorization: Bearer <key>`, never in request bodies or URLs.
 - Generated workspace files never contain the key.
 
-[Unreleased]: https://github.com/maamria/awb/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/maamria/awb/releases/tag/v0.1.0
+[Unreleased]: https://github.com/maamriaai/maamria-awb/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/maamriaai/maamria-awb/releases/tag/v0.1.0

@@ -1,6 +1,6 @@
 # Publishing to Homebrew
 
-Goal: `brew install maamria/tap/maamria-awb` (or eventually `brew install maamria-awb`) on macOS and Linux.
+Goal: `brew install maamriaai/tap/maamria-awb` (or eventually `brew install maamria-awb`) on macOS and Linux.
 
 Homebrew doesn't host packages — it hosts **formulas** that describe how to fetch + install. The cleanest path for a Node CLI is:
 
@@ -14,8 +14,8 @@ Homebrew doesn't host packages — it hosts **formulas** that describe how to fe
 A Homebrew tap is just a GitHub repo named `homebrew-<something>` that contains formula `.rb` files.
 
 ```bash
-gh repo create maamria/homebrew-tap --public --description "Homebrew tap for Maamria AI tools"
-git clone https://github.com/maamria/homebrew-tap.git
+gh repo create maamriaai/homebrew-tap --public --description "Homebrew tap for Maamria AI tools"
+git clone https://github.com/maamriaai/homebrew-tap.git
 cd homebrew-tap
 mkdir -p Formula
 ```
@@ -97,7 +97,7 @@ git push origin main
 ## 6. Users install via the tap
 
 ```bash
-brew tap maamria/tap
+brew tap maamriaai/tap
 brew install maamria-awb
 maamria-awb --version
 ```
@@ -105,10 +105,10 @@ maamria-awb --version
 Or in one line:
 
 ```bash
-brew install maamria/tap/maamria-awb
+brew install maamriaai/tap/maamria-awb
 ```
 
-`brew tap maamria/tap` resolves to the GitHub repo `maamria/homebrew-tap` automatically.
+`brew tap maamriaai/tap` resolves to the GitHub repo `maamriaai/homebrew-tap` automatically.
 
 ## 7. Updating to a new version
 
@@ -145,7 +145,7 @@ If you've contributed to homebrew-core before, the same automation works for tap
 brew bump-formula-pr \
   --url="https://registry.npmjs.org/@maamria/awb/-/awb-0.1.1.tgz" \
   --sha256="${NEW_SHA}" \
-  maamria/tap/maamria-awb
+  maamriaai/tap/maamria-awb
 ```
 
 It opens a PR against your tap with the version + sha256 bumped. Useful for CI integration with `peter-evans/create-pull-request` after each npm release.
@@ -176,14 +176,14 @@ jobs:
         uses: mislav/bump-homebrew-formula-action@v3
         with:
           formula-name: maamria-awb
-          tap: maamria/homebrew-tap
+          tap: maamriaai/homebrew-tap
           download-url: https://registry.npmjs.org/@maamria/awb/-/awb-${{ steps.hash.outputs.version }}.tgz
           download-sha256: ${{ steps.hash.outputs.sha }}
         env:
           COMMITTER_TOKEN: ${{ secrets.HOMEBREW_TAP_PAT }}
 ```
 
-`HOMEBREW_TAP_PAT` is a fine-grained PAT with write access to the `maamria/homebrew-tap` repo only.
+`HOMEBREW_TAP_PAT` is a fine-grained PAT with write access to the `maamriaai/homebrew-tap` repo only.
 
 ## 10. Submitting to homebrew-core (later, optional)
 

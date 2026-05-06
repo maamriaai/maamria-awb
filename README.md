@@ -147,7 +147,7 @@ Every command supports `--help`.
 Working on the CLI itself, or testing against your local backend?
 
 ```bash
-git clone https://github.com/maamria/awb.git maamria-awb
+git clone https://github.com/maamriaai/maamria-awb.git maamria-awb
 cd maamria-awb
 npm install
 

@@ -77,8 +77,8 @@ Fields that are good to add before going public:
 ```jsonc
 {
   "homepage":   "https://maamria.com",
-  "repository": { "type": "git", "url": "https://github.com/maamria/awb.git" },
-  "bugs":       { "url": "https://github.com/maamria/awb/issues" },
+  "repository": { "type": "git", "url": "https://github.com/maamriaai/maamria-awb.git" },
+  "bugs":       { "url": "https://github.com/maamriaai/maamria-awb/issues" },
   "keywords":   ["claude-code", "ai", "cli", "workspace", "maamria"]
 }
 ```

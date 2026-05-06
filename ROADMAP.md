@@ -57,7 +57,7 @@ Power features for users who outgrow the defaults.
 Make the project easier to discover, install, and extend.
 
 - 🚧 npm publishing — automated via GitHub Actions on `v*` tags, with `--provenance`. ([`docs/deploy/npm.md`](./docs/deploy/npm.md))
-- 📋 Homebrew formula — `brew install maamria/tap/maamria-awb`. ([`docs/deploy/homebrew.md`](./docs/deploy/homebrew.md))
+- 📋 Homebrew formula — `brew install maamriaai/tap/maamria-awb`. ([`docs/deploy/homebrew.md`](./docs/deploy/homebrew.md))
 - 📋 Templates marketplace — community templates browsable from the CLI (`maamria-awb templates`).
 - 📋 Community templates contribution flow — PR a template to a public repo, automatic publish on merge.
 - 📋 Framework integrations — first-party templates for Next.js, Nuxt, FastAPI, Django, NestJS, etc.

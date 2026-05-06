@@ -7,10 +7,10 @@
   "homepage": "https://maamria.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maamria/awb.git"
+    "url": "git+https://github.com/maamriaai/maamria-awb.git"
   },
   "bugs": {
-    "url": "https://github.com/maamria/awb/issues"
+    "url": "https://github.com/maamriaai/maamria-awb/issues"
   },
   "type": "module",
   "bin": {

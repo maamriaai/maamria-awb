@@ -43,5 +43,5 @@ pnpm whoami
 gh auth status
 
 # (Homebrew only) GitHub repo for your tap
-gh repo view maamria/homebrew-tap >/dev/null && echo "tap exists"
+gh repo view maamriaai/homebrew-tap >/dev/null && echo "tap exists"
 ```
