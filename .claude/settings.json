@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [      "Bash(git:*)",
+      "Bash(npm:*)",
+      "Bash(pip:*)",
+      "Bash(python:*)",
+      "Bash(node:*)",
+      "Bash(docker:*)",
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)",
+      "Grep(*)",
+      "Glob(*)"
+    ],
+    "deny": [      "Bash(rm:*)",      "Bash(cat .env:*)",
+      "Bash(echo $*SECRET*)",      "Read(.git/**)",      "Glob(.git/**)",      "Grep(.git/**)",      "Read(.vscode/**)",      "Glob(.vscode/**)",      "Grep(.vscode/**)",      "Read(.idea/**)",      "Glob(.idea/**)",      "Grep(.idea/**)",      "Read(.history/**)",      "Glob(.history/**)",      "Grep(.history/**)",      "Read(.DS_Store)",      "Glob(.DS_Store)",      "Grep(.DS_Store)",      "Read(Thumbs.db)",      "Glob(Thumbs.db)",      "Grep(Thumbs.db)",      "Read(.env)",      "Glob(.env)",      "Grep(.env)",      "Read(.env.*)",      "Glob(.env.*)",      "Grep(.env.*)",      "Read(*.log)",      "Glob(*.log)",      "Grep(*.log)",      "Read(logs/**)",      "Glob(logs/**)",      "Grep(logs/**)",      "Read(tmp/**)",      "Glob(tmp/**)",      "Grep(tmp/**)",      "Read(temp/**)",      "Glob(temp/**)",      "Grep(temp/**)",      "Read(.cache/**)",      "Glob(.cache/**)",      "Grep(.cache/**)",      "Read(coverage/**)",      "Glob(coverage/**)",      "Grep(coverage/**)"    ]
+  },
+  "hooks": {    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[PostToolUse] Change detected.'",
+            "timeout": 5
+          }
+        ]
+      }
+    ]  }
+}

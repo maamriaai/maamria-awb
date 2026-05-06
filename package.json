@@ -1,0 +1,74 @@
+{
+  "name": "@maamria/awb",
+  "version": "0.1.0",
+  "description": "AI context builder CLI for Claude Code, GitHub Copilot, Cursor, Windsurf, and ChatGPT Projects. Generate CLAUDE.md, .claude/agents, .claude/skills, slash commands, and assistant rules from your terminal.",
+  "license": "MIT",
+  "author": "Maamria <hello@maamria.com> (https://maamria.com)",
+  "homepage": "https://maamria.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maamria/awb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maamria/awb/issues"
+  },
+  "type": "module",
+  "bin": {
+    "maamria-awb": "./bin/maamria-awb.js",
+    "maamria": "./bin/maamria-awb.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "img",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "docs"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "dev": "tsx src/index.ts",
+    "cli": "tsx src/index.ts",
+    "start": "node ./bin/maamria-awb.js",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "ai",
+    "claude-code",
+    "github-copilot",
+    "cursor",
+    "windsurf",
+    "chatgpt",
+    "developer-tools",
+    "cli",
+    "ai-workspace",
+    "ai-context",
+    "open-source",
+    "typescript",
+    "automation",
+    "coding-assistant",
+    "project-context",
+    "maamria"
+  ],
+  "dependencies": {
+    "axios": "^1.7.7",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "conf": "^13.0.1",
+    "fs-extra": "^11.2.0",
+    "ora": "^8.1.1",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.16.10",
+    "@types/prompts": "^2.4.9",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.3"
+  }
+}
