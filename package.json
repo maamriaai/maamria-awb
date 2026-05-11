@@ -1,6 +1,6 @@
 {
   "name": "@maamria/awb",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "AI context builder CLI for Claude Code, GitHub Copilot, Cursor, Windsurf, and ChatGPT Projects. Generate CLAUDE.md, .claude/agents, .claude/skills, slash commands, and assistant rules from your terminal.",
   "license": "MIT",
   "author": "Maamria <hello@maamria.com> (https://maamria.com)",
