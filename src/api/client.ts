@@ -7,6 +7,8 @@ import type {
   GenerateRequest,
   GenerateResponseData,
   OptionItem,
+  RecommendRequest,
+  RecommendationsData,
 } from './types.js'
 
 // The base URL is treated as the single source of truth. In prod the
@@ -135,7 +137,7 @@ export const generateWorkspace = async (
   const client = buildClient()
   // Backend uses camelCase aliases; send both shapes by mapping to its
   // expected keys here.
-  const payload = {
+  const payload: Record<string, unknown> = {
     assistants: body.assistants,
     projectType: body.project_type,
     techStack: body.tech_stack,
@@ -148,8 +150,33 @@ export const generateWorkspace = async (
     projectDescription: body.project_description ?? '',
     language: body.language ?? 'en',
   }
+  if (body.selected_features && body.selected_features.length) {
+    payload.selectedFeatures = body.selected_features
+  }
   const { data } = await client.post<ApiEnvelope<GenerateResponseData>>(
     '/ai-workspace-builder/cli/generate',
+    payload,
+  )
+  return data.data
+}
+
+export const recommendWorkspace = async (
+  body: RecommendRequest,
+): Promise<RecommendationsData> => {
+  const client = buildClient()
+  // Backend accepts both snake_case and camelCase via _RecommendRequest
+  // aliases. We send camelCase for consistency with generateWorkspace.
+  const payload = {
+    assistants: body.assistants,
+    projectType: body.projectType,
+    techStack: body.techStack,
+    behaviorMode: body.behaviorMode,
+    rules: body.rules,
+    projectDescription: body.projectDescription ?? '',
+    language: body.language ?? 'en',
+  }
+  const { data } = await client.post<ApiEnvelope<RecommendationsData>>(
+    '/ai-workspace-builder/cli/recommend',
     payload,
   )
   return data.data

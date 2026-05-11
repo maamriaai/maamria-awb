@@ -122,7 +122,95 @@ maamria-awb login
 
 The key is stored at the OS user-config path (e.g. `~/Library/Preferences/maamria-ai/config.json` on macOS) — **never** inside your project directory.
 
-### 3. Generate a workspace
+### 3. Quick generate (one command, non-interactive)
+
+When you already know what you want, skip the wizard. Pass flags to `generate` and the CLI fetches recommendations, generates the workspace, and writes the files in a single command — perfect for CI, scripts, and repeatable team setups.
+
+```bash
+cd ~/projects/my-app
+maamria-awb generate \
+  --assistant claude-code \
+  --project-type saas \
+  --stack fastapi,vue-nuxt \
+  --mode enterprise \
+  --project-name "My API" \
+  --description "FastAPI and Vue SaaS project" \
+  --output . \
+  --yes
+```
+
+How it works:
+
+1. Reads the flags you passed (assistant, project type, stack, mode, project name, …).
+2. Calls `/cli/recommend` to fetch backend recommendations for your stack.
+3. Keeps only `default_selected` recommendations. Suggested ones are opt-in via `--include-suggestions` or `--interactive-recommendations`.
+4. Calls `/cli/generate` to produce the workspace files.
+5. Writes files safely with the same writer as `init`. Existing files are **skipped** unless `--force` is passed.
+
+Common flags:
+
+| Flag | Purpose |
+|---|---|
+| `--assistant` | Target AI assistant (`claude-code`, `cursor`, `copilot`, …) |
+| `--project-type` | Project category (`saas`, `library`, `mobile`, …) |
+| `--stack` | Comma-separated tech stack (`fastapi,vue-nuxt`) |
+| `--mode` | Behavior mode (`starter`, `standard`, `enterprise`) |
+| `--rules` | Comma-separated rule packs to include |
+| `--project-name` | Human-readable project name |
+| `--description` | Short project description |
+| `--output` | Output directory (defaults to current folder) |
+| `--language` | Output language for generated docs |
+| `--include-suggestions` | Also include backend suggested recommendations |
+| `--interactive-recommendations` | Pick recommendations one by one |
+| `--dry-run` | Print what would be generated; **does not** call generate, does not write files |
+| `--preview` | Show generated files without writing them (may still create a generation in history) |
+| `--force` | Overwrite existing files (required to replace anything) |
+| `--yes` | Accept all prompts. **Does not imply `--force`** — existing files are still skipped |
+| `--no-interactive` | Fail instead of falling back to prompts if a value is missing |
+
+More examples:
+
+```bash
+# Dry run — no API call to generate, no files written
+maamria-awb generate \
+  --assistant claude-code \
+  --project-type saas \
+  --stack fastapi,vue-nuxt \
+  --mode enterprise \
+  --project-name "My API" \
+  --dry-run \
+  --no-interactive
+
+# Preview the generated files before writing
+maamria-awb generate \
+  --assistant claude-code \
+  --project-type saas \
+  --stack fastapi,vue-nuxt \
+  --preview
+
+# CI / scripted run — fully non-interactive, allowed to overwrite
+maamria-awb generate \
+  --assistant claude-code \
+  --project-type saas \
+  --stack fastapi,vue-nuxt \
+  --mode enterprise \
+  --project-name "My API" \
+  --yes \
+  --force \
+  --no-interactive
+```
+
+> **Safety:** `--yes` never overwrites existing files by itself. Existing files are skipped unless you explicitly pass `--force`. `--dry-run` does not call generate and writes nothing. `--preview` shows generated files but may still create a generation in history if it uses `/cli/generate`.
+
+Backward compatible:
+
+- `maamria-awb generate` with **no flags** still opens the interactive wizard, just like `init`.
+- `maamria-awb generate -y` still behaves like the old interactive flow with “yes to all”.
+- The new non-interactive mode activates **only when flags are passed**.
+
+### 4. Interactive wizard with `init`
+
+Prefer being walked through it? `init` opens the same wizard as the web app, in your terminal.
 
 ```bash
 cd ~/projects/my-app
@@ -131,13 +219,12 @@ maamria-awb init
 
 The wizard walks you through assistant → project type → tech stack → mode → rules → agents → skills → commands → details → confirm. Files land in the current directory.
 
-### 4. Other commands
+### 5. Other commands
 
 ```bash
 maamria-awb status         # who am I logged in as?
 maamria-awb config         # show API URL + config file path
 maamria-awb logout         # remove the saved key from this machine
-maamria-awb generate       # alias for init
 ```
 
 Every command supports `--help`.

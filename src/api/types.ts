@@ -41,9 +41,40 @@ export interface GenerateRequest {
   agents: string[]
   skills: string[]
   commands: string[]
+  selected_features?: string[]
   project_name: string
   project_description?: string
   language?: string
+}
+
+// /cli/recommend wire types — mirror the backend RecommendedItem shape.
+export interface RecommendRequest {
+  assistants: string[]
+  projectType: string
+  techStack: string[]
+  behaviorMode: string
+  rules: Record<string, boolean>
+  projectDescription?: string
+  language?: string
+}
+
+export interface RecommendedItem {
+  canonical_slug: string
+  display_slug: string
+  feature_type: string
+  name: string
+  description: string
+  score: number
+  default_selected: boolean
+  badge: string
+  reasons: string[]
+  target_path: string
+}
+
+export interface RecommendationsData {
+  recommendations: RecommendedItem[]
+  by_type: Record<string, string[]>
+  fingerprint: string
 }
 
 export interface GeneratedFile {
